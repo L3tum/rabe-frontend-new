@@ -105,7 +105,7 @@
         });
     }
 
-    $('input').onkeypress((event) => {
+    $('input').on('keypress', (event) => {
         if (event.key === 'Enter') {
             login();
         }
