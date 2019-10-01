@@ -4,6 +4,7 @@
 require_once('util/util.php');
 require_once('User.php');
 
+$backend = $_ENV['BACKEND_URI'] ?? $_SERVER['BACKEND_URI'] ?? "https://rabe-backend.herokuapp.com";
 $header = 'RaBe';
 $uri = $_SERVER['REQUEST_URI'];
 
@@ -34,6 +35,12 @@ require_once('util/header.php');
 require_once('util/nav.php');
 
 switch ($uri) {
+    case '/login':
+    {
+        require_once('pages/login.php');
+        break;
+    }
+    case '/':
     default:
     {
         require_once('pages/home.php');
