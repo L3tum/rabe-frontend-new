@@ -64,7 +64,7 @@
 
         fetch(`<?php echo $backend; ?>/api/login`, {
             method: 'POST',
-            body: {email: email, password: password}
+            body: JSON.stringify({email: email, password: password})
         }).then(resp => {
             if (!resp.ok) {
                 if (resp.status === 401) {
@@ -82,7 +82,7 @@
             }
 
             resp.json().then(json => {
-                let user = {
+                const user = {
                     name: json.name,
                     email: json.email,
                     admin: json.administrator,
@@ -92,9 +92,7 @@
                     isAuthenticated: true
                 };
 
-                let cookie = JSON.stringify(user);
-
-                document.cookie = `user=${cookie}; max-age=86400; path=/;`;
+                document.cookie = `user=${JSON.stringify(user)}; max-age=86400; path=/;`;
 
                 if (json.passwordGeaendert) {
                     window.location.href = "/reset-password";
