@@ -34,7 +34,7 @@
         }
 
         function displayError(error) {
-            $('#error-container').removeClass('.d-none');
+            $('#error-container').removeClass('d-none');
             $('#error-div').text(error);
         }
 
