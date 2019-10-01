@@ -1,11 +1,11 @@
 <?php
 
 /**
- * @param string $url
- * @param string $token
- * @return string
+ * @param string|null $url
+ * @param string|null $token
+ * @return string|null
  */
-function checkUrlWithToken(string $url, string $token)
+function checkUrlWithToken(?string $url, ?string $token): ?string
 {
     return $url;
 }
