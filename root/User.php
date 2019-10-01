@@ -6,17 +6,17 @@
 class User
 {
     /**
-     * @var int
+     * @var int|null
      */
     public $id;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $name;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $email;
 
@@ -36,7 +36,7 @@ class User
     public $passwordChanged;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $token;
 
@@ -46,7 +46,7 @@ class User
     public $isAuthenticated;
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getId(): int
     {
@@ -54,7 +54,7 @@ class User
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      * @return User
      */
     public function setId(int $id): User
@@ -64,7 +64,7 @@ class User
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getName(): string
     {
@@ -72,7 +72,7 @@ class User
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      * @return User
      */
     public function setName(string $name): User
@@ -82,7 +82,7 @@ class User
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getEmail(): string
     {
@@ -90,7 +90,7 @@ class User
     }
 
     /**
-     * @param string $email
+     * @param string|null $email
      * @return User
      */
     public function setEmail(string $email): User
@@ -154,7 +154,7 @@ class User
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getToken(): string
     {
@@ -162,7 +162,7 @@ class User
     }
 
     /**
-     * @param string $token
+     * @param string|null $token
      * @return User
      */
     public function setToken(string $token): User
