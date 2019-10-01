@@ -57,16 +57,11 @@
 
     let failed = 0;
 
-    function displayError(error) {
-        $('#error-container').removeClass('.d-none');
-        $('#error-div').text(error);
-    }
-
     function login() {
         let email = $('#email').val();
         let password = $('#password').val();
 
-        fetch(`<?php echo $backend; ?>/api/login`, {
+        fetch(`${backend}/api/login`, {
             ...getJsonHeader(),
             method: 'POST',
             body: JSON.stringify({email: email, password: password})
@@ -99,7 +94,7 @@
 
                 document.cookie = `user=${JSON.stringify(user)}; max-age=86400; path=/;`;
 
-                if (json.passwordGeaendert) {
+                if (!user.passwordChanged) {
                     window.location.href = "/reset-password";
                 } else {
                     window.location.href = "/rooms";

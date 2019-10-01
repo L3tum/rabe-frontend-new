@@ -15,24 +15,37 @@
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossOrigin="anonymous"></script>
     <script type="application/javascript">
+        const backend = '<?php echo $backend; ?>';
+
         function getJsonHeader() {
             return {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
+                    'Authorization': 'Bearer <?php echo $user->getToken(); ?>'
                 }
             };
         }
+
+        function redirectLogin() {
+            if (window.location.href !== '/' && window.location.href !== '/login') {
+                window.location.href = '/login';
+            }
+        }
+
+        function displayError(error) {
+            $('#error-container').removeClass('.d-none');
+            $('#error-div').text(error);
+        }
     </script>
     <script type="application/javascript">
-        fetch(`<?php echo $backend; ?>/api/login`, {
-            ...getJsonHeader(),
-            headers: {Authorization: 'Bearer <?php echo $user->getToken(); ?>'}
-        }).then(resp => {
+        if ('<?php echo($user->isPasswordChanged() ? 1 : 0) ?>' !== '1') {
+            redirectLogin();
+        }
+
+        fetch(`${backend}/api/login`, getJsonHeader()).then(resp => {
             if (!resp.ok) {
-                if (window.location.href !== '/' && window.location.href !== '/login') {
-                    window.location.href = '/login';
-                }
+                redirectLogin();
             }
         });
     </script>

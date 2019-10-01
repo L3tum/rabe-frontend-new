@@ -50,6 +50,17 @@ switch ($uri) {
         require_once('pages/login.php');
         break;
     }
+    case '/rooms':
+    {
+        require_once('pages/rooms.php');
+        break;
+    }
+    case '/reset-password':
+    {
+        require_once('pages/reset-password.php');
+
+        break;
+    }
     case '/':
     default:
     {
