@@ -61,7 +61,7 @@
         let email = $('#email').val();
         let password = $('#password').val();
 
-        fetch(`${backend}/api/login`, {
+        doRequest(`${backend}/api/login`, {
             ...getJsonHeader(),
             method: 'POST',
             body: JSON.stringify({email: email, password: password})
@@ -100,8 +100,6 @@
                     window.location.href = "/rooms";
                 }
             });
-        }).catch(() => {
-            displayError("Ein Netzwerkfehler ist aufgetreten.");
         });
     }
 
