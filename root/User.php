@@ -23,17 +23,17 @@ class User
     /**
      * @var bool
      */
-    public $blocked;
+    public $blocked = false;
 
     /**
      * @var bool
      */
-    public $admin;
+    public $admin = false;
 
     /**
      * @var bool
      */
-    public $passwordChanged;
+    public $passwordChanged = false;
 
     /**
      * @var string|null
@@ -43,7 +43,7 @@ class User
     /**
      * @var bool
      */
-    public $isAuthenticated;
+    public $isAuthenticated = false;
 
     /**
      * @return int|null
