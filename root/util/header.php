@@ -34,8 +34,8 @@
         }
 
         function displayError(error) {
-            $('#error-container')?.removeClass('.d-none');
-            $('#error-div')?.text(error);
+            $('#error-container').removeClass('.d-none');
+            $('#error-div').text(error);
         }
 
         function doRequest(url, data) {
