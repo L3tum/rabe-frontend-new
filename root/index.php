@@ -1,7 +1,7 @@
 <?php
 
 require('vendor/autoload.php');
-require_once('util/util.php');
+@include_once('util/util.php');
 
 $header = 'RaBe';
 $uri = $_SERVER['REQUEST_URI'];
