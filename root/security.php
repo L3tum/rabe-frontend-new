@@ -14,19 +14,5 @@ function checkUrlWithToken(?string &$url, ?string $token, string $backendURL): b
         return false;
     }
 
-    file_get_contents($backendURL . '/api/login', false, createContextWithToken($token));
-
-    $status_line = $http_response_header[0];
-
-    preg_match('{HTTP\/\S*\s(\d{3})}', $status_line, $match);
-
-    $status = $match[1];
-
-    if ($status !== '200') {
-        $url = '/login';
-
-        return false;
-    }
-
     return true;
 }
