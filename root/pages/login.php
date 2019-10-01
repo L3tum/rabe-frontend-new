@@ -39,7 +39,7 @@
                     <button
                             type="button"
                             class="btn btn-dark"
-                            onClick={this.login}
+                            onClick={login()}
                         <?php if ($user->isBlocked()) echo "disabled='disabled'"; ?>
                     >
                         Anmelden
@@ -92,7 +92,9 @@
                     isAuthenticated: true
                 };
 
-                document.cookie = `user=${JSON.stringify(user)}; max-age=86400; path=/;`;
+                let cookie = JSON.stringify(user);
+
+                document.cookie = `user=${cookie}; max-age=86400; path=/;`;
 
                 if (json.passwordGeaendert) {
                     window.location.href = "/reset-password";
