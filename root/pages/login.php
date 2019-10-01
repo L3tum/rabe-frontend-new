@@ -51,6 +51,10 @@
 </div>
 
 <script type="application/javascript">
+    $(function () {
+        document.cookie = `user=; Expires=-9999999; path=/;`;
+    });
+
     let failed = 0;
 
     function displayError(error) {
@@ -63,6 +67,7 @@
         let password = $('#password').val();
 
         fetch(`<?php echo $backend; ?>/api/login`, {
+            ...getJsonHeader(),
             method: 'POST',
             body: JSON.stringify({email: email, password: password})
         }).then(resp => {

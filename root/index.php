@@ -20,7 +20,7 @@ try {
     $temp = serialize($stdobj);          //stdClass to serialized
 
     // Now we reach in and change the class of the serialized object
-    $temp = preg_replace('@^O:8:"stdClass":@','O:4:"User":',$temp);
+    $temp = preg_replace('@^O:8:"stdClass":@', 'O:4:"User":', $temp);
 
     // Unserialize and walk away like nothing happened
     $user = unserialize($temp);   // Presto a php Class
@@ -34,7 +34,9 @@ try {
 
 require_once('security.php');
 
-$uri = checkUrlWithToken($uri, $user->getToken());
+if (!checkUrlWithToken($uri, $user->getToken(), $backend)) {
+    $user = new User();
+}
 
 require_once('util/header.php');
 ?>
