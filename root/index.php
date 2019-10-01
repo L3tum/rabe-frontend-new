@@ -12,9 +12,12 @@ if (isset($_COOKIE['user'])) {
     $userCookie = $_COOKIE['user'];
 }
 
-
 try {
     $user = json_decode($userCookie);
+
+    if ($user === null) {
+        $user = new User();
+    }
 } catch (Exception $e) {
     $user = new User();
 }
