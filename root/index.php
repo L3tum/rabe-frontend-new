@@ -15,7 +15,15 @@ if (isset($_COOKIE['user'])) {
 }
 
 try {
-    $user = json_decode($userCookie);
+    // LOL WTF PHP
+    $stdobj = json_decode($userCookie);  //JSON to stdClass
+    $temp = serialize($stdobj);          //stdClass to serialized
+
+    // Now we reach in and change the class of the serialized object
+    $temp = preg_replace('@^O:8:"stdClass":@','O:4:"User":',$temp);
+
+    // Unserialize and walk away like nothing happened
+    $user = unserialize($temp);   // Presto a php Class
 
     if ($user === null) {
         $user = new User();
