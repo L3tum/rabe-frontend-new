@@ -28,9 +28,12 @@ require_once('security.php');
 $uri = checkUrlWithToken($uri, $user->getToken());
 
 require_once('util/header.php');
+?>
+<body>
+<?php
+require_once('util/nav.php');
 
 switch ($uri) {
-    case '/':
     default:
     {
         require_once('pages/home.php');
@@ -39,3 +42,5 @@ switch ($uri) {
 }
 
 require_once('util/footer.php');
+?>
+</body>
