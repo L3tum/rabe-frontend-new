@@ -50,12 +50,16 @@
     </script>
     <script type="application/javascript">
         if ('<?php echo($user->isPasswordChanged() ? 1 : 0) ?>' !== '1') {
-            redirectLogin();
+            if (window.location.href !== '/' && window.location.href !== '/login') {
+                window.location.href = '/reset-password';
+            }
         }
 
         fetch(`${backend}/api/login`, getJsonHeader()).then(resp => {
             if (!resp.ok) {
                 redirectLogin();
+            } else if (window.location.href === '/' || window.location.href === '/login') {
+                window.location.href = '/rooms';
             }
         });
     </script>

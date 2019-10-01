@@ -74,10 +74,24 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/reset-password">Passwort ändern</a>
-                        <button type="button" class="dropdown-item" onClick={logoutUser}>Abmelden</button>
+                        <button type="button" class="dropdown-item" onClick={logoutUser()}>Abmelden</button>
                     </div>
                 </li>
             </ul>
         </div>
     <?php endif; ?>
 </nav>
+
+<script type="application/javascript">
+    function logoutUser() {
+        doRequest(`${backend}/api/login/logout`, {...getJsonHeader(), method: 'POST'})
+            .then(response => {
+                if (response.ok) {
+                    document.cookie = "user=; Expires=-9999999; path=/;";
+                    window.location.href = '/';
+                } else {
+                    displayError('Abmelden fehlgeschlagen.');
+                }
+            })
+    }
+</script>
