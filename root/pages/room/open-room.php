@@ -21,7 +21,7 @@ $errors = json_decode($response);
         <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
                 <div class="card-img-top bg-dark p-3 d-flex justify-content-center text-white">
-                    <img src="../../icons/add.svg" alt="Hinzufügen" style="width: 80px; height: 80px;">
+                    <img src="icons/add.svg" alt="Hinzufügen" style="width: 80px; height: 80px;">
                 </div>
                 <div class="card-body">
                     <h1 class="card-title">Neuen Fehler</h1>
@@ -40,7 +40,7 @@ $errors = json_decode($response);
             <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
                     <div class="card-img-top bg-dark p-3 d-flex justify-content-center text-white">
-                        <img src="../../icons/caution.svg" alt="Standard-Mangel" style="width: 80px; height: 80px;">
+                        <img src="icons/caution.svg" alt="Standard-Mangel" style="width: 80px; height: 80px;">
                     </div>
                     <div class="card-body">
                         <h1 class="card-title"><?php echo $error->titel ?></h1>
