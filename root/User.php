@@ -48,7 +48,7 @@ class User
     /**
      * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -57,7 +57,7 @@ class User
      * @param int|null $id
      * @return User
      */
-    public function setId(int $id): User
+    public function setId(?int $id): User
     {
         $this->id = $id;
         return $this;
@@ -66,7 +66,7 @@ class User
     /**
      * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -75,7 +75,7 @@ class User
      * @param string|null $name
      * @return User
      */
-    public function setName(string $name): User
+    public function setName(?string $name): User
     {
         $this->name = $name;
         return $this;
@@ -84,7 +84,7 @@ class User
     /**
      * @return string|null
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -93,7 +93,7 @@ class User
      * @param string|null $email
      * @return User
      */
-    public function setEmail(string $email): User
+    public function setEmail(?string $email): User
     {
         $this->email = $email;
         return $this;
@@ -156,7 +156,7 @@ class User
     /**
      * @return string|null
      */
-    public function getToken(): string
+    public function getToken(): ?string
     {
         return $this->token;
     }
@@ -165,7 +165,7 @@ class User
      * @param string|null $token
      * @return User
      */
-    public function setToken(string $token): User
+    public function setToken(?string $token): User
     {
         $this->token = $token;
         return $this;
