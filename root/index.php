@@ -2,9 +2,11 @@
 
 @include_once('vendor/autoload.php');
 require_once('util/util.php');
+
 require_once('User.php');
 
 $backend = $_ENV['BACKEND_URI'] ?? $_SERVER['BACKEND_URI'] ?? "https://rabe-backend.herokuapp.com";
+
 $header = 'RaBe';
 $uri = $_SERVER['REQUEST_URI'];
 
@@ -59,6 +61,16 @@ switch ($uri) {
     {
         require_once('pages/reset-password.php');
 
+        break;
+    }
+    case (preg_match('/rooms\/view\/[0-9]+\/.+/', $uri) ? true : false):
+    {
+        require_once('pages/room/open-room.php');
+        break;
+    }
+    case (preg_match('/rooms\/add-error\/[0-9]+\/.+/', $uri) ? true : false):
+    {
+        require_once('pages/room/add-error.php');
         break;
     }
     case '/':

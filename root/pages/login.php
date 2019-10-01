@@ -72,12 +72,15 @@
 
                     if (failed === 3) {
                         $("input").prop('disabled', true);
-                        displayError("Ihr Account wurde auf Grund zu vieler fehlgeschlagener Login Versuche gesperrt. Bitte wenden Sie sich an einen Administrator.")
+                        displayError("Ihr Account wurde auf Grund zu vieler fehlgeschlagener Login Versuche gesperrt. Bitte wenden Sie sich an einen Administrator.");
                     } else {
-                        displayError(`Benutzerdaten falsch. Noch ${3 - failed} Versuche.`)
+                        displayError(`Benutzerdaten falsch. Noch ${3 - failed} Versuche.`);
                     }
                 } else if (resp.status === 404) {
                     displayError("Benutzerdaten falsch.");
+                } else if (resp.status === 400) {
+                    $("input").prop('disabled', true);
+                    displayError("Ihr Account wurde auf Grund zu vieler fehlgeschlagener Login Versuche gesperrt. Bitte wenden Sie sich an einen Administrator.")
                 }
             }
 

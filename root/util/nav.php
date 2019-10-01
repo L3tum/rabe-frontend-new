@@ -1,6 +1,3 @@
-<?php
-?>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3 sticky-top">
     <a class="navbar-brand rabe-logo" href="/">RaBe</a>
     <?php if ($user->isAuthenticated()): ?>
@@ -17,7 +14,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class='nav-item <?php if ($uri === "/rooms") echo "active"; ?>'>
+                <li class='nav-item <?php if (startsWith($uri, "/rooms")) echo "active"; ?>'>
                     <a class="nav-link" href="/rooms">
                         Räume
                     </a>

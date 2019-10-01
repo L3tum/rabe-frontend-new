@@ -28,7 +28,7 @@
         }
 
         function redirectLogin() {
-            if (window.location.href !== '/' && window.location.href !== '/login') {
+            if (window.location.pathname !== '/' && window.location.pathname !== '/login') {
                 window.location.href = '/login';
             }
         }
@@ -49,8 +49,8 @@
         }
     </script>
     <script type="application/javascript">
-        if ('<?php echo($user->isPasswordChanged() ? 1 : 0) ?>' !== '1') {
-            if (window.location.href !== '/' && window.location.href !== '/login') {
+        if ('<?php echo($user->isPasswordChanged() ? 1 : 0) ?>' !== '1' && '<?php echo $user->isAuthenticated() ? 1 : 0 ?>' === '1') {
+            if (window.location.pathname !== '/' && window.location.pathname !== '/login' && window.location.pathname !== '/reset-password') {
                 window.location.href = '/reset-password';
             }
         }
@@ -58,7 +58,7 @@
         fetch(`${backend}/api/login`, getJsonHeader()).then(resp => {
             if (!resp.ok) {
                 redirectLogin();
-            } else if (window.location.href === '/' || window.location.href === '/login') {
+            } else if (window.location.pathname === '/' || window.location.pathname === '/login') {
                 window.location.href = '/rooms';
             }
         });
