@@ -5,7 +5,12 @@ require_once('util/util.php');
 
 $header = 'RaBe';
 $uri = $_SERVER['REQUEST_URI'];
-$userCookie = $_COOKIE['user'];
+
+$userCookie = '';
+
+if (isset($_COOKIE['user'])) {
+    $userCookie = $_COOKIE['user'];
+}
 
 
 try {
