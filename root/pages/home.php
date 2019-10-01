@@ -1,5 +1,3 @@
-<?php
-?>
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -23,7 +21,7 @@
             <div class="row justify-content-center mt-3">
                 <div class="col-12 col-md-6">
                     <button type="button" class="btn btn-dark btn-block btn-lg"
-                            onclick="window.location.href = '/login'">
+                            onclick="window.location.href = '/login';">
                         Einloggen
                     </button>
                 </div>

@@ -33,13 +33,7 @@ require_once('util/header.php');
 <?php
 require_once('util/nav.php');
 
-switch ($uri) {
-    default:
-    {
-        require_once('pages/home.php');
-        break;
-    }
-}
+require_once('pages/home.php');
 
 require_once('util/footer.php');
 ?>
