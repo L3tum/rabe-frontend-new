@@ -62,7 +62,7 @@
                     <button type="button" class="btn btn-light mr-3" onclick="window.location.href='/login';">
                         Zurück
                     </button>
-                    <button type="button" class="btn btn-dark" onClick={changePassword}>Passwort ändern
+                    <button type="button" class="btn btn-dark" onClick={changePassword()}>Passwort ändern
                     </button>
                 </div>
             </div>
@@ -98,4 +98,10 @@
             });
         }
     }
+
+    $('input').on('keypress', (event) => {
+        if (event.key === 'Enter') {
+            changePassword();
+        }
+    });
 </script>
