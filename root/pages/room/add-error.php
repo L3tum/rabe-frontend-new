@@ -91,11 +91,12 @@ $categories = json_decode($response);
         }
 
         let request = {
-            titel: title,
-            beschreibung: description,
-            status: status,
-            kategorieId: category,
-            arbeitsplatzId: <?php echo $id; ?>
+            Id: 0,
+            Titel: title,
+            Beschreibung: description,
+            Status: status,
+            KategorieId: category,
+            ArbeitsplatzId: <?php echo $id; ?>
         };
 
         doRequest(backend + '/api/error', {...getJsonHeader(), method: 'POST', body: JSON.stringify(request)})
