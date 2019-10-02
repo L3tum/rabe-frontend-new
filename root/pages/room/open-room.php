@@ -91,5 +91,24 @@ $workplaces = json_decode($response, false);
                 });
             });
         });
+
+        $('.td').on('click', () => {
+            let id = $(this).attr('id');
+            let position = 0;
+
+            if (id && id.startsWith('pc')) {
+                position = parseInt(id.replace('pc', ''));
+            }
+
+            let workplaceId = 0;
+
+            workplaces.forEach(function (workplace) {
+                if (workplace.position === position) {
+                    workplaceId = workplace.id;
+                }
+            });
+
+            window.location.href = '/rooms/workplace/' + workplaceId;
+        });
     });
 </script>

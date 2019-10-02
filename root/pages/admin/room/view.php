@@ -122,7 +122,8 @@ $authority = json_decode($response)->lehrerId;
         let template = $('#template').val();
 
         if (name.trim() === '') {
-            displayError('Bitte füllen Sie alle Felder aus.')
+            displayError('Bitte füllen Sie alle Felder aus.');
+            return;
         }
 
         let request = {

@@ -79,7 +79,10 @@ $teacher = json_decode($response);
 <script type="application/javascript">
     function remove() {
         if (window.confirm("Wollen Sie den Lehrer wirklich löschen?\nWARNUNG: EXPERIMENTELL")) {
-            doRequest(backend + '/api/teacher/deleteTeacher/<?php echo $teacher->id ?>', {...getJsonHeader(), method: 'DELETE'})
+            doRequest(backend + '/api/teacher/deleteTeacher/<?php echo $teacher->id ?>', {
+                ...getJsonHeader(),
+                method: 'DELETE'
+            })
                 .then(response => {
                     if (response.status === 200) {
                         displayError('Lehrer erfolgreich gelöscht.');
@@ -104,6 +107,7 @@ $teacher = json_decode($response);
 
         if (name.trim() === '' || email.trim() === '') {
             displayError('Bitte füllen Sie alle Felder aus.');
+            return;
         }
 
         let request = {

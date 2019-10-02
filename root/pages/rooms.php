@@ -8,18 +8,6 @@ $rooms = json_decode($response);
 
 <div class="container">
     <div class="row mt-lg-5 mt-2" id="container">
-        <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <div class="card-img-top bg-dark p-3 d-flex justify-content-center text-white">
-                    <img src="svgs/add.svg" alt="Hinzufügen" style="width: 80px; height: 80px;">
-                </div>
-                <div class="card-body">
-                    <h1 class="card-title">Neuen Raum</h1>
-                    <p class="card-text"></p>
-                    <a href="#" class="btn btn-dark btn-block">Hinzufügen</a>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <script type="application/javascript">

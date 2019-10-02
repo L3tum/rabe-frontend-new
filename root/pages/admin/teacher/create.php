@@ -100,7 +100,8 @@
         }
 
         if (name.trim() === '' || email.trim() === ''){
-            displayError('Bitte füllen Sie alle Felder aus.')
+            displayError('Bitte füllen Sie alle Felder aus.');
+            return;
         }
 
             let request = {

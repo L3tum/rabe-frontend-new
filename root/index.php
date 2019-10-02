@@ -57,6 +57,11 @@ switch ($uri) {
             require_once('pages/room/add-error.php');
             break;
         }
+    case (preg_match('/rooms\/workplace\/\d+/', $uri) ? true : false):
+        {
+            require_once('pages/room/workplace.php');
+            break;
+        }
     case (preg_match('/admin\/teacher\/\d+/', $uri) ? true : false):
         {
             require_once('pages/admin/teacher/view.php');
