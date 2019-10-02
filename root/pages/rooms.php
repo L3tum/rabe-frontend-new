@@ -36,7 +36,6 @@ $rooms = json_decode($response);
                             <span class="badge badge-danger" id="[id]-danger">KRITISCHE MÄNGEL</span>
                         </p>
                         <a href="/rooms/view/[id]" class="btn btn-dark btn-block">Öffnen</a>
-                        <a href="#" class="btn btn-dark btn-block">Bearbeiten</a>
                     </div>
                 </div>
             </div>`;
