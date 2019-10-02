@@ -4,7 +4,7 @@
 <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
     <div class="card" style="width: 18rem;">
         <div class="card-img-top bg-dark p-3 d-flex justify-content-center text-white">
-            <img src="./icons/teacher.svg" alt="Lehrer" style="width: 80px; height: 80px;">
+            <img src="./svgs/teacher.svg" alt="Lehrer" style="width: 80px; height: 80px;">
         </div>
         <div class="card-body">
             <h1 class="card-title">Florian Larue</h1>
@@ -17,7 +17,7 @@
 <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
     <div class="card" style="width: 18rem;">
         <div class="card-img-top bg-dark p-3 d-flex justify-content-center text-white">
-            <img src="../icons/caution.svg" alt="Standard-Mangel" style="width: 80px; height: 80px;">
+            <img src="../svgs/caution.svg" alt="Standard-Mangel" style="width: 80px; height: 80px;">
         </div>
         <div class="card-body">
             <h1 class="card-title">Z-Attack</h1>
@@ -32,7 +32,7 @@
 <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
     <div class="card" style="width: 18rem;">
         <div class="card-img-top bg-dark p-3 d-flex justify-content-center text-white">
-            <img src="../icons/category.svg" alt="Kategorie" style="width: 80px; height: 80px;">
+            <img src="../svgs/category.svg" alt="Kategorie" style="width: 80px; height: 80px;">
         </div>
         <div class="card-body">
             <h1 class="card-title">Tastatur</h1>
@@ -45,7 +45,7 @@
 <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
     <div class="card" style="width: 18rem;">
         <div class="card-img-top bg-dark p-3 d-flex justify-content-center text-white">
-            <img src="../icons/teacher.svg" alt="Mangel" style="width: 80px; height: 80px;">
+            <img src="../svgs/teacher.svg" alt="Mangel" style="width: 80px; height: 80px;">
         </div>
         <div class="card-body">
             <h1 class="card-subtitle">Florian Larue</h1>
@@ -61,7 +61,7 @@
     <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
         <div class="card" style="width: 18rem;">
             <div class="card-img-top bg-dark p-3 d-flex justify-content-center text-white">
-                <img src="../icons/caution.svg" alt="Mangel" style="width: 80px; height: 80px;">
+                <img src="../svgs/caution.svg" alt="Mangel" style="width: 80px; height: 80px;">
             </div>
             <div class="card-body">
                 <h4 class="card-title"><span

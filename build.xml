@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project name="application" basedir="." default="help:local">
+
+
+    <property file="build.properties"/>
+    <property file="build.properties.local"/>
+
+
+    <import file="/srv/phing/commons/sf4.xml"/>
+
+
+    <target name="help:local" depends="help">
+        <echo message="target"/>
+        <echo message="----------------------------------------------------------------------------------------------------"/>
+        <echo message="install"/>
+        <echo message="start"/>
+        <echo message="stop"/>
+    </target>
+
+
+    <target name="install">
+        <phingcall target="clean:dist"/>
+        <phingcall target="composer:install"/>
+    </target>
+
+
+    <target name="start">
+        <phingcall target="clean:dist"/>
+        <phingcall target="docker:compose:start"/>
+        <phingcall target="docker:compose:status"/>
+    </target>
+
+
+    <target name="stop">
+        <phingcall target="docker:compose:stop"/>
+    </target>
+
+    <target name="docker:push:aws">
+        <fail unless="env.AWS_ACCESS_KEY_ID" message="missing environment variable AWS_ACCESS_KEY_ID"/>
+        <fail unless="env.AWS_SECRET_ACCESS_KEY" message="missing environment variable AWS_SECRET_ACCESS_KEY"/>
+        <fail unless="env.AWS_DEFAULT_REGION" message="missing environment variable AWS_DEFAULT_REGION"/>
+        <fail unless="env.AWS_IMAGE_URL" message="missing environment variable AWS_IMAGE_URL"/>
+        <fail unless="env.AWS_REGISTRY_ID" message="missing environment variable AWS_REGISTRY_ID"/>
+
+        <exec command="eval $(aws ecr get-login --no-include-email --registry-ids ${env.AWS_REGISTRY_ID} | sed 's|https://||')" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+
+        <exec command="docker tag ${project.name} ${env.AWS_IMAGE_URL}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="docker tag ${project.name} ${env.AWS_IMAGE_URL}:${project.version}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="docker push ${env.AWS_IMAGE_URL}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+        <exec command="docker push ${env.AWS_IMAGE_URL}:${project.version}" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+    </target>
+
+    <target name="aws:deploy">
+        <exec command="aws ecs update-service --cluster foodnik --service Foodnik-Fargate-Service-4AW49VF91786 --force-new-deployment" passthru="true"
+        checkreturn="true" level="info" dir="${project.root}"/>
+    </target>
+
+    <target name="composer:clearcache">
+        <exec command="composer clear-cache" passthru="true" checkreturn="true" level="info" dir="${project.root}"/>
+    </target>
+
+</project>

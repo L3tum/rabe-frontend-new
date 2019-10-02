@@ -31,9 +31,19 @@ function createContextWithToken($token)
         "http" => [
             "method" => "GET",
             "header" => "Accept:application/json\r\nAuthorization: Bearer $token\r\nConnection: close",
-            'ignore_errors' => true
-        ]
+            'ignore_errors' => true,
+        ],
     ];
 
     return stream_context_create($opts);
+}
+
+/**
+ * @param string $url
+ * @param string $token
+ * @return false|string
+ */
+function makeGetRequest($url, $token)
+{
+    return file_get_contents($url, false, createContextWithToken($token));
 }

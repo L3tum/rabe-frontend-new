@@ -7,55 +7,89 @@ if (count($parts) < 2) {
     die();
 }
 
-$id = $parts[count($parts) - 2];
-$name = $parts[count($parts) - 1];
+$id = $parts[count($parts) - 1];
 
-$response = file_get_contents($backend . '/api/errors/getAllErrorsOfRoom/' . $id, false, createContextWithToken($user->getToken()));
-$errors = json_decode($response);
+$response = makeGetRequest($backend . '/api/room/' . $id, $user->getToken());
 
+$room = json_decode($response, false);
+$vorlage = $room->vorlage;
+
+$response = makeGetRequest($backend . '/api/Room/GetAllWorkplacesOfRoom/' . $id, $user->getToken());
+$workplaces = json_decode($response, false);
 ?>
 
 <div class="container">
-    <h2><?php echo $name; ?></h2>
-    <div class="row mt-lg-5 mt-2">
-        <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <div class="card-img-top bg-dark p-3 d-flex justify-content-center text-white">
-                    <img src="icons/add.svg" alt="Hinzufügen" style="width: 80px; height: 80px;">
-                </div>
-                <div class="card-body">
-                    <h1 class="card-title">Neuen Fehler</h1>
-                    <p class="card-text"></p>
-                    <a href="/rooms/add-error/<?php echo "$id/$name"; ?>" class="btn btn-dark btn-block">Hinzufügen</a>
-                </div>
-            </div>
-        </div>
+    <style>
+        .td {
+            width: 80px;
+            height: 80px;
+            padding: 2px;
+            flex;
+            0 1 auto;
+        }
 
-        <?php foreach ($errors as $error): ?>
+        .td > button {
+            width: 76px;
+            height: 76px;
+        }
+
+        .bottom {
+            border-bottom: 2px solid darkgreen;
+        }
+    </style>
+    <h2><?php echo $room->name; ?></h2>
+    <div class="row">
+        <div class="col-12">
             <?php
-            $response = file_get_contents($backend . '/api/categories/' . $error->kategorieId, false, createContextWithToken($user->getToken()));
-            $category = json_decode($response);
+            require_once("templates/$vorlage.php");
             ?>
-
-            <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-img-top bg-dark p-3 d-flex justify-content-center text-white">
-                        <img src="icons/caution.svg" alt="Standard-Mangel" style="width: 80px; height: 80px;">
-                    </div>
-                    <div class="card-body">
-                        <h1 class="card-title"><?php echo $error->titel ?></h1>
-                        <p class="card-text">Kategorie: <?php echo $category->name; ?><br>
-                            Text: <?php echo $error->beschreibung; ?><br>
-                            Status:
-                            <?php if ($error->status === 1): ?><span class="badge badge-warning text-white">BEEINTRÄCHTIGUNG</span>
-                            <?php else: ?><span class="badge badge-danger">KRITISCHER MANGEL</span>
-                            <?php endif; ?>
-                        </p>
-                        <a href="#" class="btn btn-dark btn-block">Bearbeiten</a>
-                    </div>
-                </div>
-            </div>
-
-        <?php endforeach; ?>
+        </div>
     </div>
 </div>
+<script type="application/javascript">
+    $(function () {
+        let workplaces = JSON.parse('<?php echo $response; ?>');
+
+        workplaces.forEach(function (workplace) {
+            doRequest(backend + '/api/errors/getAllErrorsOfWorkplace/' + workplace.id, getJsonHeader()).then(response => {
+                response.json().then(json => {
+                    let status = 0;
+                    let htmlId = "";
+
+                    json.forEach(function (error) {
+                        if (error.status > status) {
+                            status = error.status;
+                        }
+                    });
+
+                    if (workplace.kategorieId === 6) {
+                        htmlId = "beamer";
+                    } else if (workplace.kategorieId === 7) {
+                        htmlId = "speaker";
+                    } else if (workplace.kategorieId === 8) {
+                        htmlId = "accesspoint";
+                    } else if (workplace.position === 0) {
+                        htmlId = "pcteacher";
+                    } else {
+                        htmlId = "pc" + (workplace.position - 1);
+                    }
+
+                    let html = $(`#${htmlId}`);
+
+                    if (html) {
+                        switch (status) {
+                            case 1: {
+                                html.find('.btn').removeClass('btn-success').addClass('btn-warning');
+                                break;
+                            }
+                            case 2: {
+                                html.find('.btn').removeClass('btn-success').addClass('btn-danger');
+                                break;
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    });
+</script>

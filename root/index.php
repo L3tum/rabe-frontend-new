@@ -47,38 +47,38 @@ require_once('util/header.php');
 require_once('util/nav.php');
 
 switch ($uri) {
-    case '/login':
-    {
-        require_once('pages/login.php');
-        break;
-    }
-    case '/rooms':
-    {
-        require_once('pages/rooms.php');
-        break;
-    }
-    case '/reset-password':
-    {
-        require_once('pages/reset-password.php');
-
-        break;
-    }
-    case (preg_match('/rooms\/view\/[0-9]+\/.+/', $uri) ? true : false):
-    {
-        require_once('pages/room/open-room.php');
-        break;
-    }
-    case (preg_match('/rooms\/add-error\/[0-9]+\/.+/', $uri) ? true : false):
-    {
-        require_once('pages/room/add-error.php');
-        break;
-    }
+    case (preg_match('/rooms\/view\/\d+/', $uri) ? true : false):
+        {
+            require_once('pages/room/open-room.php');
+            break;
+        }
+    case (preg_match('/rooms\/add-error\/\d+/', $uri) ? true : false):
+        {
+            require_once('pages/room/add-error.php');
+            break;
+        }
+    case (preg_match('/admin\/teacher\/\d+/', $uri) ? true : false):
+        {
+            require_once('pages/admin/teacher/view.php');
+            break;
+        }
+    case (preg_match('/admin\/room\/\d+/', $uri) ? true : false):
+        {
+            require_once('pages/admin/room/view.php');
+            break;
+        }
     case '/':
     default:
-    {
-        require_once('pages/home.php');
-        break;
-    }
+        {
+            if (file_exists("pages$uri.php")) {
+                @require_once("pages$uri.php");
+
+                break;
+            }
+
+            require_once('pages/home.php');
+            break;
+        }
 }
 
 require_once('util/footer.php');

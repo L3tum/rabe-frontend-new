@@ -29,15 +29,15 @@ $name = $parts[count($parts) - 1];
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label class="w-100" for="password">
-                            Altes Passwort
-                            <input id="oldPassword" class="form-control" type="password"/>
+                        <label class="w-100" for="title">
+                            Titel
+                            <input id="title" class="form-control"/>
                         </label>
                     </div>
                     <div class="form-group">
-                        <label class="w-100" for="password">
-                            Neues Passwort
-                            <input id="password" class="form-control" type="password"/>
+                        <label class="w-100" for="description">
+                            Beschreibung
+                            <input id="description" class="form-control" type="text"/>
                         </label>
                     </div>
                     <div class="form-group">

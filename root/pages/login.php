@@ -19,7 +19,9 @@
                             <input
                                     id="email"
                                     class="form-control"
-                                <?php if ($user->isBlocked()) echo "disabled='disabled'"; ?>
+                                <?php if ($user->isBlocked()) {
+                                    echo "disabled='disabled'";
+                                } ?>
                             />
                         </label>
                     </div>
@@ -30,7 +32,9 @@
                                     id="password"
                                     class="form-control"
                                     type="password"
-                                <?php if ($user->isBlocked()) echo "disabled='disabled'"; ?>
+                                <?php if ($user->isBlocked()) {
+                                    echo "disabled='disabled'";
+                                } ?>
                             />
                         </label>
                     </div>
@@ -40,7 +44,9 @@
                             type="button"
                             class="btn btn-dark"
                             onClick={login()}
-                        <?php if ($user->isBlocked()) echo "disabled='disabled'"; ?>
+                        <?php if ($user->isBlocked()) {
+                            echo "disabled='disabled'";
+                        } ?>
                     >
                         Anmelden
                     </button>
@@ -82,6 +88,8 @@
                     $("input").prop('disabled', true);
                     displayError("Ihr Account wurde auf Grund zu vieler fehlgeschlagener Login Versuche gesperrt. Bitte wenden Sie sich an einen Administrator.")
                 }
+
+                return;
             }
 
             resp.json().then(json => {

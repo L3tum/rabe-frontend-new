@@ -29,7 +29,7 @@
         }
 
         function redirectLogin() {
-            if (window.location.pathname !== '/' && window.location.pathname !== '/login') {
+            if (window.location.pathname !== '' && window.location.pathname !== '/' && window.location.pathname !== '/login') {
                 window.location.href = '/login';
             }
         }

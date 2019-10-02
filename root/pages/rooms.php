@@ -1,17 +1,17 @@
 <?php
 
 // TODO: GetAllRoomsOfTeacher/$teacherId replace
-$response = file_get_contents($backend . '/api/room', false, createContextWithToken($user->getToken()));
+$response = makeGetRequest($backend . '/api/room', $user->getToken());
 
 $rooms = json_decode($response);
 ?>
 
 <div class="container">
-    <div class="row mt-lg-5 mt-2">
+    <div class="row mt-lg-5 mt-2" id="container">
         <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
                 <div class="card-img-top bg-dark p-3 d-flex justify-content-center text-white">
-                    <img src="icons/add.svg" alt="Hinzufügen" style="width: 80px; height: 80px;">
+                    <img src="svgs/add.svg" alt="Hinzufügen" style="width: 80px; height: 80px;">
                 </div>
                 <div class="card-body">
                     <h1 class="card-title">Neuen Raum</h1>
@@ -20,39 +20,68 @@ $rooms = json_decode($response);
                 </div>
             </div>
         </div>
-
-        <?php foreach ($rooms as $room): ?>
-            <?php
-            $response = file_get_contents($backend . '/api/errors/getAllErrorsOfRoom/' . $room->id, false, createContextWithToken($user->getToken()));
-            $errors = json_decode($response);
-            $status = 0;
-
-            foreach ($errors as $error) {
-                if ($error->status > $status) {
-                    $status = $error->status;
-                }
-            }
-            ?>
-
-            <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
+    </div>
+</div>
+<script type="application/javascript">
+    const template = `            <div class="col-md-6 col-lg-4 mb-3 d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
                     <div class="card-img-top bg-dark p-3 d-flex justify-content-center text-white">
-                        <img src="icons/room.svg" alt="Raum" style="width: 80px; height: 80px;">
+                        <img src="svgs/room.svg" alt="Raum" style="width: 80px; height: 80px;">
                     </div>
                     <div class="card-body">
-                        <h1 class="card-title"><?php echo $room->name; ?></h1>
+                        <h1 class="card-title">[name]</h1>
                         <p class="card-text">Mängel:
-                            <?php if ($status === 0): ?><span class="badge badge-success">KEIN MANGEL</span>
-                            <?php elseif ($status === 1): ?><span class="badge badge-warning text-white">BEEINTRÄCHTIGUNG</span>
-                            <?php elseif ($status === 2): ?> <span class="badge badge-danger">KRITISCHE MÄNGEL</span>
-                            <?php endif; ?>
+                            <span class="badge badge-success" id="[id]-green">KEIN MANGEL</span>
+                            <span class="badge badge-warning text-white" id="[id]-warning">BEEINTRÄCHTIGUNG</span>
+                            <span class="badge badge-danger" id="[id]-danger">KRITISCHE MÄNGEL</span>
                         </p>
-                        <a href="/rooms/view/<?php echo "$room->id/$room->name"; ?>" class="btn btn-dark btn-block">Öffnen</a>
+                        <a href="/rooms/view/[id]" class="btn btn-dark btn-block">Öffnen</a>
                         <a href="#" class="btn btn-dark btn-block">Bearbeiten</a>
                     </div>
                 </div>
-            </div>
+            </div>`;
 
-        <?php endforeach; ?>
-    </div>
-</div>
+    $(function () {
+        let rooms = JSON.parse('<?php echo $response; ?>');
+
+        rooms.forEach(function (room) {
+            doRequest(backend + '/api/errors/getAllErrorsOfRoom/' + room.id, getJsonHeader())
+                .then(response => {
+                    response.json().then(json => {
+                        let status = 0;
+
+                        json.forEach(function (error) {
+                            if (error.status > status) {
+                                status = error.status;
+                            }
+                        });
+
+                        let templ = template;
+
+                        templ = templ.replace(/\[name\]/gi, room.name);
+                        templ = templ.replace(/\[id\]/gi, room.id);
+
+                        $('#container').append(templ);
+
+                        switch (status) {
+                            case 0: {
+                                $(`#${room.id}-warning`).addClass('d-none');
+                                $(`#${room.id}-danger`).addClass('d-none');
+                                break;
+                            }
+                            case 1: {
+                                $(`#${room.id}-green`).addClass('d-none');
+                                $(`#${room.id}-danger`).addClass('d-none');
+                                break;
+                            }
+                            case 2: {
+                                $(`#${room.id}-green`).addClass('d-none');
+                                $(`#${room.id}-warning`).addClass('d-none');
+                                break;
+                            }
+                        }
+                    });
+                });
+        });
+    })
+</script>
