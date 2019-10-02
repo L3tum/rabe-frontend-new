@@ -127,8 +127,9 @@ $authority = json_decode($response)->lehrerId;
         }
 
         let request = {
-            name: name,
-            vorlage: parseInt(template)
+            Id: <?php echo $room->id ?>,
+            Name: name,
+            Vorlage: parseInt(template)
         };
 
         doRequest(backend + "/api/room", {...getJsonHeader(), method: 'PUT', body: JSON.stringify(request)})

@@ -1,6 +1,5 @@
 <?php
 
-// TODO: GetAllRoomsOfTeacher/$teacherId replace
 $response = makeGetRequest($backend . '/api/room', $user->getToken());
 
 $rooms = json_decode($response);
