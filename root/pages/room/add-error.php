@@ -99,7 +99,7 @@ $categories = json_decode($response);
             ArbeitsplatzId: <?php echo $id; ?>
         };
 
-        doRequest(backend + '/api/error', {...getJsonHeader(), method: 'POST', body: JSON.stringify(request)})
+        doRequest(backend + '/api/errors', {...getJsonHeader(), method: 'POST', body: JSON.stringify(request)})
             .then(response => {
                 if (response.status === 200) {
                     displayError('Fehler erfolgreich gemeldet.');
