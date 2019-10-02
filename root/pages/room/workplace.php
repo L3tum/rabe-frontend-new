@@ -9,7 +9,7 @@ if (count($parts) < 2) {
 
 $id = $parts[count($parts) - 1];
 
-$response = makeGetRequest($backend . '/api/getAllErrorsOfWorkplace/' . $id, $user->getToken());
+$response = makeGetRequest($backend . '/api/errors/getAllErrorsOfWorkplace/' . $id, $user->getToken());
 $errors = json_decode($response);
 
 ?>
@@ -31,7 +31,7 @@ $errors = json_decode($response);
                 <div class="card-body d-flex align-items-start flex-column">
                     <h1 class="card-title">Fehler melden</h1>
                     <button type="button" class="btn btn-dark btn-block mt-auto"
-                            onclick="window.location.href = '/room/add-error/<?php echo $id; ?>'">Hinzufügen
+                            onclick="window.location.href = '/rooms/add-error/<?php echo $id; ?>'">Hinzufügen
                     </button>
                 </div>
             </div>

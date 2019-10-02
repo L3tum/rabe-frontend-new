@@ -9,7 +9,7 @@ if (count($parts) < 2) {
 
 $id = $parts[count($parts) - 1];
 
-$respone = makeGetRequest($backend . '/api/categories', $user->getToken());
+$response = makeGetRequest($backend . '/api/categories', $user->getToken());
 $categories = json_decode($response);
 
 ?>
@@ -25,13 +25,10 @@ $categories = json_decode($response);
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <h2>
-                Lehrer aktualisieren
+                Fehler melden
             </h2>
             <p>
-                Hier können Sie Lehrer bearbeiten.
-            </p>
-            <p>
-                Außerdem können Sie festlegen ober der Lehrer Admin Rechte haben soll oder blockiert nicht.
+                Hier können Sie Fehler melden.
             </p>
         </div>
     </div>
@@ -59,6 +56,7 @@ $categories = json_decode($response);
                         </select>
                     </label>
                 </div>
+                <br><br>
                 <div class="form-group mb-5">
                     <label for="category" class="form-check-input w-75 ml-1">
                         Kategorie
