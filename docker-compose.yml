@@ -7,4 +7,4 @@ services:
     ports:
       - 8888:80
     volumes:
-      - ./root:/var/www/html
+      - ./:/var/www/html

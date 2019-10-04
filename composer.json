@@ -3,6 +3,14 @@
     "heroku/heroku-buildpack-php": "^163.0"
   },
   "require": {
-    "ext-json": "*"
+    "php": "^7.1",
+    "ext-json": "*",
+    "filp/whoops": "^2.5",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "RaBe\\": "src/"
+    }
   }
 }
