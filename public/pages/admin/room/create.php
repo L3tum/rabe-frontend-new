@@ -1,7 +1,10 @@
 <?php
 
+use RaBe\Models\Teacher;
+use RaBe\Util\Serializer;
+
 $response = makeGetRequest($backend . '/api/teacher', $user->getToken());
-$teachers = json_decode($response);
+$teachers = Serializer::deserializeArray($response, Teacher::class);
 
 ?>
 
