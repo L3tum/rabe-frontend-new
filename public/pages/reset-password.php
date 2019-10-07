@@ -28,13 +28,12 @@
                         </li>
                         <li>
                             Mindestens eines der folgendenden Sonderzeichen:
-                            {' '}
                             <span class="font-weight-bold">!</span>
-                            {', '}
+                            ,
                             <span class="font-weight-bold">@</span>
-                            {', '}
+                            ,
                             <span class="font-weight-bold">#</span>
-                            {' oder '}
+                             oder
                             <span class="font-weight-bold">&</span>
                             .
                         </li>
